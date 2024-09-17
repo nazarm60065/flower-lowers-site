@@ -1,0 +1,22 @@
+{
+  "name": "prymery/flowers-lovers-site",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "Prymery\\": "src"
+    }
+  },
+  "extra": {
+    "bitrix-dir": "public_html/bitrix",
+    "installer-paths": {
+      "public_html/local/modules/{$name}/": [
+        "type:bitrix-module",
+        "type:bitrix-d7-module"
+      ]
+    }
+  },
+  "require": {
+    "illuminate/support": "^10.48",
+    "mustache/mustache": "^2.14"
+  }
+}
