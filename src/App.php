@@ -8,8 +8,8 @@ use Bitrix\Main\Context;
 
 class App
 {
-    const INCLUDE_PATH = '/public_html/local/include/';
-    const ASSETS_PATH = '/public_html/local/assets/local/';
+    const INCLUDE_PATH = '/local/include/';
+    const ASSETS_PATH = '/local/assets/local/';
     const AJAX_URL_PARAM = 'is_ajax';
 
     public static $app;

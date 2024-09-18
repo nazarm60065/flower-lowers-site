@@ -4,6 +4,7 @@ use Prymery\DeferredFunctions\Container;
 use Prymery\DeferredFunctions\MainClass;
 use Prymery\DeferredFunctions\NavChain;
 use Prymery\DeferredFunctions\Title;
+use Prymery\DeferredFunctions\Asset\InlineStyles;
 use Prymery\App;
 use Prymery\Helpers\BxFrontendChecker;
 
@@ -22,7 +23,7 @@ $isMainPage = CSite::InDir('/index.php');
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title><? App::CMain()->ShowTitle(); ?></title>
         <?
-        //echo DeferredFunctions\Asset\InlineStyles::show();
+        echo InlineStyles::show();
         //echo DeferredFunctions\Asset\InlineJs::show();
 
         App::Include('header/favicon');
@@ -33,8 +34,7 @@ $isMainPage = CSite::InDir('/index.php');
         App::CMain()->ShowLink('canonical', null);
 
         if ((new BxFrontendChecker())->needAddFrontend()) {
-            App::CMain()->ShowHeadStrings();
-            App::CMain()->ShowHeadScripts();
+            App::CMain()->ShowHead();
             App::CMain()->SetPageProperty('needBxStyles', 'Y');
         } ?>
         <style>

@@ -3,23 +3,23 @@
 namespace Prymery\Helpers;
 
 use CUser;
-use Bitrix\Main\Application;
+use CMain;
 
 class BxFrontendChecker
 {
     const NEED_BX_DIRECTORIES = ['/basket/', '/order/', '/personal/'];
     const GROUPS = [5];
 
-    protected Application $bxApp;
+    protected CMain $bxApp;
     protected CUser $user;
 
-    public function __construct(Application $bxApp = null, CUser $user = null)
+    public function __construct()
     {
         global $APPLICATION;
         global $USER;
 
-        $this->bxApp = $bxApp ?? $APPLICATION;
-        $this->user = $user ?? $USER;
+        $this->bxApp = $APPLICATION;
+        $this->user = $USER;
     }
 
     public function needAddFrontend()
