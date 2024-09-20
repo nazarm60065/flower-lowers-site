@@ -1,5 +1,5 @@
 <?
-require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 
 use Prymery\DeferredFunctions\MainClass;
 use Prymery\DeferredFunctions\Container;
@@ -27,6 +27,14 @@ App::deferredJs([
 ]);
 ?>
 
-<?App::Include('homepage/top-slider')?>
+<? App::Include('homepage/top-slider') ?>
+<? App::Include('homepage/selection') ?>
+<? App::Include('homepage/jumbo') ?>
+<? App::Include('homepage/catalog-sections') ?>
+<? App::Include('homepage/gamma') ?>
+<? App::Include('homepage/about') ?>
+<? App::Include('homepage/features', true, [], false) ?>
+<? App::Include('homepage/faq') ?>
+<? App::Include('viewed') ?>
 
-<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+<? require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php"); ?>

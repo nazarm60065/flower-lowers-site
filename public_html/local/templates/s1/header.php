@@ -32,11 +32,9 @@ $isMainPage = CSite::InDir('/index.php');
         App::CMain()->ShowMeta('keywords', false);
         App::CMain()->ShowMeta('description', false);
         App::CMain()->ShowLink('canonical', null);
+        App::CMain()->ShowHead();
 
-        if ((new BxFrontendChecker())->needAddFrontend()) {
-            App::CMain()->ShowHead();
-            App::CMain()->SetPageProperty('needBxStyles', 'Y');
-        } ?>
+        ?>
         <style>
           .page #bx-panel {
             position: relative !important;
