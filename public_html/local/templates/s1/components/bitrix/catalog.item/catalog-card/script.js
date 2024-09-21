@@ -140,6 +140,7 @@
 		this.obQuantityLimit = {};
 		this.obPict = null;
 		this.obSecondPict = null;
+		this.obLabel = null;
 		this.obPictSlider = null;
 		this.obPictSliderIndicator = null;
 		this.obPrice = null;
@@ -436,6 +437,10 @@
 			if (this.secondPict && this.visual.SECOND_PICT_ID)
 			{
 				this.obSecondPict = BX(this.visual.SECOND_PICT_ID);
+			}
+
+			if (this.visual.LABEL_ID) {
+				this.obLabel = BX(this.visual.LABEL_ID)
 			}
 
 			this.obPictSlider = BX(this.visual.PICT_SLIDER_ID);
@@ -1882,16 +1887,18 @@
 					// show pict and pict_second containers
 					if (this.obPict)
 					{
+						this.obPict.parentNode.style.display = '';
+
 						if (this.offers[index].PREVIEW_PICTURE)
 						{
 							BX.adjust(this.obPict, {attrs: {src: this.offers[index].PREVIEW_PICTURE.SRC}});
 						}
-						else
+						else if (this.defaultPict.pict)
 						{
 							BX.adjust(this.obPict, {attrs: {src: this.defaultPict.pict.SRC}});
+						} else {
+							this.obPict.parentNode.style.display = 'none';
 						}
-
-						this.obPict.parentNode.style.display = '';
 					}
 
 					if (this.secondPict && this.obSecondPict)
@@ -1924,6 +1931,15 @@
 						{
 							BX.adjust(this.obSecondPict, {style: {backgroundImage: 'url(\'' + this.defaultPict.pict.SRC + '\')'}});
 						}*/
+					}
+				}
+
+				if (this.obLabel) {
+					if (this.offers[index].LABEL) {
+						this.obLabel.style.display = ''
+						this.obLabel.innerText = this.offers[index].LABEL
+					} else {
+						this.obLabel.style.display = 'none'
 					}
 				}
 
@@ -2080,7 +2096,7 @@
 					{
 						BX.adjust(this.obPriceOld, {
 							style: {display: ''},
-							html: formatNumber(price.RATIO_BASE_PRICE)
+							html: this.formatNumber(price.RATIO_BASE_PRICE)
 						});
 					}
 					else
@@ -2098,7 +2114,7 @@
 					{
 						BX.adjust(this.obPriceTotal, {
 							html: BX.message('PRICE_TOTAL_PREFIX') + ' <strong>'
-							+ formatNumber(price.PRICE * this.obQuantity.value)
+							+ this.formatNumber(price.PRICE * this.obQuantity.value)
 							+ '</strong>',
 							style: {display: ''}
 						});

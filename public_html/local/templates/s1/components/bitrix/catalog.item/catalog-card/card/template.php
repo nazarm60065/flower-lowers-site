@@ -26,43 +26,55 @@ use Prymery\Helpers\FormatNumberHelper;
  * @var CatalogSectionComponent $component
  */
 
+$isBig = $item['PROPERTIES']['IS_BIG']['VALUE'] === 'Y';
+$size = $isBig ? [
+    'width' => 1158,
+    'height' => 520,
+] : [
+    'width' => 390,
+    'height' => 390,
+];
+
 if ($item['PREVIEW_PICTURE']) {
-    $item['PREVIEW_PICTURE'] = ImageResizeHelper::resize($item['PREVIEW_PICTURE'], [
-        'width' => 390,
-        'height' => 390,
-    ], BX_RESIZE_IMAGE_EXACT, $item['NAME']);
+    $item['PREVIEW_PICTURE'] = ImageResizeHelper::resize($item['PREVIEW_PICTURE'], $size, BX_RESIZE_IMAGE_EXACT, $item['NAME']);
 }
 
 if ($item['PREVIEW_PICTURE_SECOND']) {
-    $item['PREVIEW_PICTURE_SECOND'] = ImageResizeHelper::resize($item['PREVIEW_PICTURE_SECOND'], [
-        'width' => 390,
-        'height' => 390,
-    ], BX_RESIZE_IMAGE_EXACT, $item['NAME']);
+    $item['PREVIEW_PICTURE_SECOND'] = ImageResizeHelper::resize($item['PREVIEW_PICTURE_SECOND'], $size, BX_RESIZE_IMAGE_EXACT, $item['NAME']);
 }
 
 $bgImage = !empty($item['PREVIEW_PICTURE_SECOND']) ? $item['PREVIEW_PICTURE_SECOND']['SRC'] : "";
+
+$label = $item['LABEL'];
 ?>
 
-<div class="catalog-card-image-wrapper" data-entity="image-wrapper">
-    <div class="catalog-card-image-inner catalog-card-image-inner_active"<? if (!$item['PREVIEW_PICTURE']) : ?> style="display: none;" <?endif;?>>
+<div class="catalog-card-image-wrapper<?= $isBig ? '  catalog-mega-card-wrapper' : '' ?>" data-entity="image-wrapper">
+    <div class="catalog-card-image-inner catalog-card-image-inner_active"<? if (!$item['PREVIEW_PICTURE']) : ?> style="display: none;" <? endif; ?>>
         <img src="<?= $item['PREVIEW_PICTURE']['SRC'] ?>" alt="<?= $item['PREVIEW_PICTURE']['ALT'] ?>"
              id="<?= $itemIds['PICT'] ?>"
              class="catalog-card-image__img" loading="lazy">
     </div>
-    <div class="catalog-card-image-inner catalog-card-image-inner_back"<? if (!$bgImage) : ?> style="display: none;" <?endif;?>>
+    <div class="catalog-card-image-inner catalog-card-image-inner_back"<? if (!$bgImage) : ?> style="display: none;" <? endif; ?>>
         <img src="<?= $bgImage ?>" alt="<?= $item['PREVIEW_PICTURE']['ALT'] ?>"
              id="<?= $itemIds['SECOND_PICT'] ?>"
              class="catalog-card-image__img" loading="lazy">
     </div>
+    <div class="catalog-card__available"
+         id="<?= $itemIds['NOT_AVAILABLE_MESS'] ?>"<? if ($actualItem['CAN_BUY']) : ?> style="display: none;"<? endif; ?>>
+        Только под заказ
+    </div>
+    <div class="catalog-card__label"
+         id="<?= $itemIds['LABEL_ID'] ?>" <? if (!$label) : ?> style="display: none;"<? endif; ?>><?= $label ?></div>
 </div>
-<div class="catalog-card-content">
-    <div class="catalog-card__title"><?= $productTitle ?></div>
+<div class="catalog-card-content<?= $isBig ? ' catalog-mega-card-content' : '' ?>">
+    <div class="catalog-card__title<?= $isBig ? ' catalog-mega-card__title' : '' ?>"><?= $productTitle ?></div>
     <?
     if (!empty($arParams['PRODUCT_BLOCKS_ORDER'])) {
         foreach ($arParams['PRODUCT_BLOCKS_ORDER'] as $blockName) {
             switch ($blockName) {
                 case 'price': ?>
-                    <div class="catalog-card-price" data-entity="price-block">
+                    <div class="catalog-card-price<?= $isBig ? ' catalog-mega-card-price' : '' ?>"
+                         data-entity="price-block">
                         <? if (!empty($price)) : ?>
                             <div class="catalog-card-price-base">
                                 <span class="catalog-card-price__value"
@@ -195,8 +207,10 @@ $bgImage = !empty($item['PREVIEW_PICTURE_SECOND']) ? $item['PREVIEW_PICTURE_SECO
                         if (!$haveOffers) {
                             if ($actualItem['CAN_BUY']) {
                                 ?>
-                                <div class="catalog-card-button-container" id="<?= $itemIds['BASKET_ACTIONS'] ?>">
-                                    <button class="button button_linear catalog-card__to-cart" type="button"
+                                <div class="catalog-card-button-container<?= $isBig ? ' catalog-mega-card-button-container' : '' ?>"
+                                     id="<?= $itemIds['BASKET_ACTIONS'] ?>">
+                                    <button class="button button_linear catalog-card__to-cart<?= $isBig ? ' catalog-mega-card__to-cart' : '' ?>"
+                                            type="button"
                                             id="<?= $itemIds['BUY_LINK'] ?>">
                                         <?= ($arParams['ADD_TO_BASKET_ACTION'] === 'BUY' ? $arParams['MESS_BTN_BUY'] : $arParams['MESS_BTN_ADD_TO_BASKET']) ?>
                                     </button>
@@ -222,10 +236,6 @@ $bgImage = !empty($item['PREVIEW_PICTURE_SECOND']) ? $item['PREVIEW_PICTURE_SECO
                                         );
                                     }
                                     ?>
-                                    <button class="button button_linear catalog-card__to-cart" type="button"
-                                            id="<?= $itemIds['NOT_AVAILABLE_MESS'] ?>">
-                                        <?= $arParams['MESS_NOT_AVAILABLE'] ?>
-                                    </button>
                                 </div>
                                 <?
                             }
@@ -401,7 +411,8 @@ $bgImage = !empty($item['PREVIEW_PICTURE_SECOND']) ? $item['PREVIEW_PICTURE_SECO
 
                                         if ($showOfferProps) {
                                             ?>
-                                            <span id="<?= $itemIds['DISPLAY_PROP_DIV'] ?>" style="display: none;"></span>
+                                            <span id="<?= $itemIds['DISPLAY_PROP_DIV'] ?>"
+                                                  style="display: none;"></span>
                                             <?
                                         }
                                         ?>

@@ -101,7 +101,8 @@ $generalParams = array(
     'MESS_BTN_COMPARE' => $arParams['~MESS_BTN_COMPARE'],
     'MESS_BTN_SUBSCRIBE' => $arParams['~MESS_BTN_SUBSCRIBE'],
     'MESS_BTN_ADD_TO_BASKET' => $arParams['~MESS_BTN_ADD_TO_BASKET'],
-    'MESS_NOT_AVAILABLE' => $arParams['~MESS_NOT_AVAILABLE']
+    'MESS_NOT_AVAILABLE' => $arParams['~MESS_NOT_AVAILABLE'],
+    'ADDITIONAL_CSS_CLASS' => $arParams['ADDITIONAL_CSS_CLASS'],
 );
 
 $obName = 'ob' . preg_replace('/[^a-zA-Z0-9_]/', 'x', $this->GetEditAreaId($this->randString()));

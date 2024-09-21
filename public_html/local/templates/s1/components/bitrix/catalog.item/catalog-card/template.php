@@ -24,6 +24,7 @@ if (isset($arResult['ITEM'])) {
         'SECOND_PICT' => $areaId . '_secondpict',
         'PICT_SLIDER' => $areaId . '_pict_slider',
         'STICKER_ID' => $areaId . '_sticker',
+        'LABEL_ID' => $areaId . '_label',
         'SECOND_STICKER_ID' => $areaId . '_secondsticker',
         'QUANTITY' => $areaId . '_quantity',
         'QUANTITY_DOWN' => $areaId . '_quant_down',
@@ -109,6 +110,10 @@ if (isset($arResult['ITEM'])) {
         $additionalCssClass[] = 'catalog-card_back';
     }
 
+    if ($item['PROPERTIES']['IS_BIG']['VALUE'] === 'Y') {
+        $additionalCssClass[] = 'catalog-mega-card';
+    }
+
     $additionalCssClass = $additionalCssClass ? (' ' . implode(' ', $additionalCssClass)) : "";
     ?>
 
@@ -156,7 +161,8 @@ if (isset($arResult['ITEM'])) {
                     'ITEM_MEASURE_RATIOS' => $item['ITEM_MEASURE_RATIOS'],
                     'ITEM_MEASURE_RATIO_SELECTED' => $item['ITEM_MEASURE_RATIO_SELECTED'],
                     'MORE_PHOTO' => $item['MORE_PHOTO'],
-                    'MORE_PHOTO_COUNT' => $item['MORE_PHOTO_COUNT']
+                    'MORE_PHOTO_COUNT' => $item['MORE_PHOTO_COUNT'],
+                    'LABEL' => $item['LABEL'],
                 ),
                 'BASKET' => array(
                     'ADD_PROPS' => $arParams['ADD_PROPERTIES_TO_BASKET'] === 'Y',
@@ -171,6 +177,7 @@ if (isset($arResult['ITEM'])) {
                     'ID' => $itemIds['ID'],
                     'PICT_ID' => $item['SECOND_PICT'] ? $itemIds['SECOND_PICT'] : $itemIds['PICT'],
                     'PICT_SLIDER_ID' => $itemIds['PICT_SLIDER'],
+                    'LABEL_ID' => $itemIds['LABEL_ID'],
                     'QUANTITY_ID' => $itemIds['QUANTITY'],
                     'QUANTITY_UP_ID' => $itemIds['QUANTITY_UP'],
                     'QUANTITY_DOWN_ID' => $itemIds['QUANTITY_DOWN'],
@@ -214,6 +221,7 @@ if (isset($arResult['ITEM'])) {
                     'PICT_ID' => $itemIds['PICT'],
                     'SECOND_PICT_ID' => $itemIds['SECOND_PICT'],
                     'PICT_SLIDER_ID' => $itemIds['PICT_SLIDER'],
+                    'LABEL_ID' => $itemIds['LABEL_ID'],
                     'QUANTITY_ID' => $itemIds['QUANTITY'],
                     'QUANTITY_UP_ID' => $itemIds['QUANTITY_UP'],
                     'QUANTITY_DOWN_ID' => $itemIds['QUANTITY_DOWN'],

@@ -6,7 +6,7 @@ $APPLICATION->IncludeComponent("bitrix:catalog.products.viewed", "viewed", Array
 		"ADDITIONAL_PICT_PROP_3" => "-",
 		"ADD_PROPERTIES_TO_BASKET" => "N",	// Добавлять в корзину свойства товаров и предложений
 		"ADD_TO_BASKET_ACTION" => "BUY",	// Показывать кнопку добавления в корзину или покупки
-		"BASKET_URL" => "/cart/",	// URL, ведущий на страницу с корзиной покупателя
+		"BASKET_URL" => "/basket/",	// URL, ведущий на страницу с корзиной покупателя
 		"CACHE_GROUPS" => "N",	// Учитывать права доступа
 		"CACHE_TIME" => "3600",	// Время кеширования (сек.)
 		"CACHE_TYPE" => "A",	// Тип кеширования
@@ -84,6 +84,7 @@ $APPLICATION->IncludeComponent("bitrix:catalog.products.viewed", "viewed", Array
 		"LABEL_PROP_4" => "",	// Свойство меток товара
 		"ADDITIONAL_PICT_PROP_5" => "ADDITIONAL_IMAGE",	// Дополнительная картинка
         "TITLE" => "Вы недавно смотрели",
+        "ADDITIONAL_CSS_CLASS" => "swiper-slide homepage-catalog-slide",
 	),
 	false
 );

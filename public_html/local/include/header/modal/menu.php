@@ -50,7 +50,6 @@ $APPLICATION->IncludeComponent(
 		"PROPERTY_CODE" => array(
 			0 => "LINK",
 			1 => "",
-			2 => "",
 		),
 		"SET_BROWSER_TITLE" => "N",
 		"SET_LAST_MODIFIED" => "N",
@@ -65,7 +64,7 @@ $APPLICATION->IncludeComponent(
 		"SORT_ORDER2" => "DESC",
 		"STRICT_SECTION_CHECK" => "N",
 		"COMPONENT_TEMPLATE" => "header-modal-menu",
-		"LINK" => "#",
+		"LINK" => "/catalog/",
 		"LINK_TEXT" => "Смотреть все"
 	),
 	false
