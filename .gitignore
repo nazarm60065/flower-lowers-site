@@ -38,8 +38,6 @@ node_modules
 /public_html/upload/*
 !/public_html/upload/.keepme
 /public_html/local/modules/
-/public_html/local/assets/local/
-/public_html/local/assets/mustache/
 
 .env
 *.gz
