@@ -123,7 +123,7 @@ if ($arResult['IDS']) {
             "SLIDER_PROGRESS" => "N",
             "TEMPLATE_THEME" => "blue",
             "USE_ENHANCED_ECOMMERCE" => "N",
-            "USE_MAIN_ELEMENT_SECTION" => "N",
+            "USE_MAIN_ELEMENT_SECTION" => "Y",
             "USE_PRICE_COUNT" => "N",
             "USE_PRODUCT_QUANTITY" => "Y",
             "ADDITIONAL_CSS_CLASS" => "swiper-slide homepage-catalog-slide",

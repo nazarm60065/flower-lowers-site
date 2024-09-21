@@ -24,7 +24,6 @@ use Bitrix\Main\ModuleManager;
 MainClass::setMainClass('catalog-detail');
 Container::hideContainer();
 Title::hideTitle();
-NavChain::hideNavChain();
 App::inlineCss([
     '/local/assets/local/bundle-common/bundle-common.css',
     '/local/assets/local/bundle-form/bundle-form.css',
